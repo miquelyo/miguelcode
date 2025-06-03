@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+  <h1>Dashboard Project</h1>
+  <button id="logoutBtn">Logout</button>
+
+  <script>
+    const supabase = window.supabase.createClient(
+      'https://stlmvxnmscdqlmgeatlx.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0bG12eG5tc2NkcWxtZ2VhdGx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MTAxMDksImV4cCI6MjA2NDQ4NjEwOX0.gWqbTikgN2ot3JY7k7OWMmk9_Xj0f30NoRWGt3XL31c'
+    );
+
+    // Cek apakah sudah login
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (!session) {
+        // Jika belum login, redirect ke login
+        window.location.href = 'index.html';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
