@@ -1,0 +1,237 @@
+/* Import Google Font - Menggunakan font Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* Reset dasar dan box sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Styling dasar untuk body */
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  background: #0f172a;
+  color: #333;
+}
+
+/* Container global - digunakan di semua section */
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* ===================== */
+/* == HEADER / NAVBAR == */
+/* ===================== */
+
+/* Header sticky dengan efek glass */
+.glass-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  background: transparent;
+}
+
+.glass-nav {
+  background: transparent;
+  backdrop-filter: blur(20px);
+  border-radius: 999px;
+  padding: 10px 25px;
+  display: flex;
+  gap: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.glass-nav a {
+  text-decoration: none;
+  color: #334155;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+
+.glass-nav a.active,
+.glass-nav a:hover {
+  background: white;
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ===================== */
+/* ======== HERO ======= */
+/* ===================== */
+
+.hero {
+  color: white;
+  padding: 140px 20px 100px;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.hero span {
+  color: #ffeb3b;
+}
+
+/* ===================== */
+/* ==== SECTION UMUM ==== */
+/* ===================== */
+
+.section {
+  padding: 60px 0;
+}
+
+/* Judul section terang */
+.section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #abaeb8ff;
+}
+
+/* =============================
+   Dark Sections Styling
+   ============================= */
+.dark-section {
+  background: #0f172a;
+  color: #ffffff;
+}
+
+.dark-section h2,
+.dark-section h3 {
+  color: #f8fafc;
+}
+
+.dark-section p {
+  color: #cbd5e1;
+}
+
+.dark-section a {
+  color: #93c5fd;
+}
+
+.dark-section .project-card,
+.dark-section .experience-item {
+  background: #1e293b;
+  color: #f1f5f9;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Optional: nav bar glass look tweak on dark */
+.glass-header.dark-section {
+  background-color: rgba(15, 23, 42, 0.8);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.glass-header .glass-nav a {
+  color: #757575ff;
+}
+
+.glass-header .glass-nav a.active {
+  background: #1e40af;
+  color: white;
+}
+
+/* Hero Text */
+.hero.dark-section {
+  color: white;
+}
+
+.hero.dark-section h2 span {
+  color: #facc15;
+}
+
+
+/* ===================== */
+/* ===== PROJECTS ====== */
+/* ===================== */
+
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.project-card {
+  background: white;
+  padding: 20px;
+  border-left: 4px solid #6366f1;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Warna project di dark section */
+.dark-section .project-card {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+/* ===================== */
+/* === EXPERIENCE ====== */
+/* ===================== */
+
+.experience-item {
+  margin-bottom: 30px;
+}
+
+/* Experience di dark section */
+.dark-section .experience-item {
+  color: #e2e8f0;
+}
+
+/* ===================== */
+/* ==== CONTACT FORM ==== */
+/* ===================== */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input,
+form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+}
+
+form button {
+  padding: 12px;
+  background: #6366f1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #4f46e5;
+}
+
+/* ===================== */
+/* ====== FOOTER ======= */
+/* ===================== */
+
+footer {
+  text-align: center;
+  padding: 30px 0;
+  background: #e5e7eb;
+  font-size: 0.9rem;
+}

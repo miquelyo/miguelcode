@@ -1,0 +1,280 @@
+/* NOTED: Mengimpor font Inter dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* NOTED: Variabel global CSS untuk konsistensi styling */
+:root {
+  --primary: #1E40AF;             /* Warna utama (biru tua) */
+  --primary-light: #3B82F6;       /* Warna utama versi lebih terang */
+  --text: #1f2937;                /* Warna teks utama */
+  --bg: #f9fafb;                  /* Warna background keseluruhan */
+  --white: #ffffff;              /* Putih bersih */
+  --radius: 12px;                /* Radius border untuk elemen */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+}
+
+/* NOTED: Reset default dan atur box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* NOTED: Styling dasar untuk body */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NOTED: Warna dan tampilan link */
+a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+/* NOTED: Wrapper umum untuk konten utama agar rata tengah dan responsif */
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* ======================= */
+/* SECTION: Hero Landing Page */
+/* ======================= */
+
+/* NOTED: Hero (judul & deskripsi) di halaman landing/index */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+/* NOTED: Judul besar hero */
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+/* NOTED: Deskripsi hero */
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+/* ======================= */
+/* SECTION: Tombol Umum */
+/* ======================= */
+
+/* NOTED: Gaya tombol utama, digunakan di semua halaman */
+.btn {
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+/* NOTED: Efek hover pada tombol */
+.btn:hover {
+  background-color: var(--primary-light);
+}
+
+/* ======================= */
+/* SECTION: Form Login / Input */
+/* ======================= */
+
+/* NOTED: Style form login (login.html) atau form lain */
+form {
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+/* NOTED: Input field di dalam form */
+form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  font-size: 1rem;
+}
+
+/* NOTED: Tombol submit pada form */
+form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* NOTED: Hover pada tombol submit */
+form button:hover {
+  background-color: var(--primary-light);
+}
+
+/* ======================= */
+/* SECTION: Responsiveness */
+/* ======================= */
+
+/* NOTED: Responsif untuk layar kecil (mobile) */
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+
+/* ======================= */
+/* SECTION: Navbar Dashboard */
+/* ======================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1rem 2rem;
+  box-shadow: var(--shadow);
+}
+
+.navbar h1 {
+  font-size: 1.5rem;
+}
+
+.navbar button {
+  background-color: var(--white);
+  color: var(--primary);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.navbar button:hover {
+  background-color: var(--primary-light);
+  color: var(--white);
+}
+
+/* ======================= */
+/* SECTION: Dashboard Content */
+/* ======================= */
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ======================= */
+/* SECTION: Card Style */
+/* ======================= */
+.card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.card p {
+  font-size: 1rem;
+}
+
+/* ======================= */
+/* SECTION: Responsive Dashboard */
+/* ======================= */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+  }
+}
+
+/* ======================= */
+/* SECTION: Dashboard Heading / Section Title */
+/* ======================= */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1rem;
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 0.5rem;
+}
+
+/* ======================= */
+/* SECTION: Grid Card Layout */
+/* ======================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+/* ======================= */
+/* SECTION: Card Improvements */
+/* ======================= */
+.card {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  transition: transform 0.2s ease;
+  border-left: 4px solid var(--primary);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h4 {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.95rem;
+  margin-bottom: 0.25rem;
+}
+
+.card small {
+  color: #6b7280;
+  font-size: 0.8rem;
+}

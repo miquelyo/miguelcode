@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sertifikat | MiguelCode</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Beranda</span></a>
+      <a href="sertifikat.html" class="nav-item active"><i class="fas fa-certificate"></i><span>Sertifikat</span></a>
+      <a href="dokumen.html" class="nav-item"><i class="fas fa-file-alt"></i><span>Dokumen</span></a>
+      <a href="akun.html" class="nav-item"><i class="fas fa-shield-alt"></i><span>Akun Digital</span></a>
+      <a href="#" class="nav-item"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1>Sertifikat</h1>
+        <button id="openModal" class="btn-plus"><i class="fas fa-plus"></i> Tambah</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nama File</th>
+            <th>Tanggal Upload</th>
+            <th>Preview</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="sertifikatTable">
+          <!-- Data dari JS -->
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <!-- Modal Upload -->
+  <div id="modal" class="modal-overlay" style="display: none;">
+    <div class="modal-box">
+      <h2>Upload Sertifikat</h2>
+      <input type="file" id="fileInput" accept=".pdf,.jpg,.jpeg,.png" />
+      <p id="previewText" style="font-size: 0.9rem; margin-top: 0.75rem; color: #374151;"></p>
+
+      <div style="margin-top: 1.5rem; text-align: right;">
+        <button id="cancelBtn" class="btn-cancel">Batal</button>
+        <button id="uploadBtn" class="btn-upload">Upload</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Preview -->
+  <div id="previewModal" class="modal-overlay" style="display: none;">
+    <div class="modal-box" style="max-width: 700px;">
+      <h2>Preview File</h2>
+      <div id="previewContainer" style="max-height: 500px; overflow: auto;"></div>
+      <div style="text-align: right; margin-top: 1rem;">
+        <button onclick="document.getElementById('previewModal').style.display='none'" class="btn-cancel">Tutup</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="sertifikat.js"></script>
+</body>
+</html>

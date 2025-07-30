@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Login | MiguelCode</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="animation-wrapper">
+      <div class="animation">
+        <canvas id="riveCanvas" width="300" height="300"></canvas>
+      </div>
+    </div>
+
+    <div class="login-container">
+      <form class="login-form" onsubmit="login(event)">
+        <h2 style="text-align:center;">Login MiguelCode</h2>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Script Supabase & Rive -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script type="module" src="supabase.js"></script>
+  <script type="module" src="login.js"></script>
+  <script src="https://unpkg.com/@rive-app/webgl"></script>
+
+  <script>
+    const stateMachineName = "State Machine 1";
+    const canvas = document.getElementById("riveCanvas");
+
+    fetch("login.riv")
+      .then(res => res.arrayBuffer())
+      .then(buffer => {
+        const riveInstance = new rive.Rive({
+          buffer,
+          canvas,
+          autoplay: true,
+          stateMachines: [stateMachineName],
+          onLoad: () => {
+            const inputs = riveInstance.stateMachineInputs(stateMachineName);
+            const handsUp = inputs.find(i => i.name === "hands_up");
+            const success = inputs.find(i => i.name === "success");
+            const fail = inputs.find(i => i.name === "fail");
+            const check = inputs.find(i => i.name === "Check");
+
+            if (!handsUp || !success || !fail || !check) {
+              console.warn("Input Rive tidak ditemukan.");
+              return;
+            }
+
+            const passwordInput = document.getElementById("password");
+            passwordInput.addEventListener("focus", () => handsUp.value = true);
+            passwordInput.addEventListener("blur", () => handsUp.value = false);
+
+            const usernameInput = document.getElementById("username");
+            usernameInput.addEventListener("input", () => check.fire());
+
+            window.__riveInputs = { success, fail };
+          }
+        });
+      })
+      .catch(err => console.error("Gagal load Rive:", err));
+  </script>
+</body>
+</html>

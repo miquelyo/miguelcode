@@ -1,0 +1,142 @@
+/* ===== Font dan Reset ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== Prevent Auto-Zoom on Mobile Inputs ===== */
+input,
+button,
+textarea,
+select {
+  font-size: 16px;
+}
+
+/* ===== Body Layout ===== */
+html,
+body {
+  height: 100%;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* ===== Wrapper untuk Login dan Animasi ===== */
+.wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+}
+
+/* ===== Animation Behind Card ===== */
+.animation-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  width: 220px;
+  height: 220px;
+  z-index: 0;
+  animation: riseBehind 1s ease-out forwards;
+  pointer-events: none;
+}
+
+.animation {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: normal;
+}
+
+.animation canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ===== Login Card ===== */
+.login-container {
+  background: #1e293b;
+  padding: 25px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* ===== Login Form ===== */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.login-form input {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.login-form button {
+  padding: 12px;
+  background: #3b82f6;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.login-form button:hover {
+  background: #2563eb;
+}
+
+/* ===== Responsive Mobile ===== */
+@media (max-width: 480px) {
+  html,
+  body {
+    align-items: flex-start;
+  }
+
+  .wrapper {
+    padding: 30px 20px;
+    margin-top: 100px;
+  }
+
+  .animation-wrapper {
+    width: 180px;
+    height: 180px;
+    transform: translateX(-50%) translateY(120px);
+  }
+
+  .login-form input,
+  .login-form button {
+    font-size: 15px;
+  }
+}
+
+/* ===== Animasi Rive Muncul dari Bawah ===== */
+@keyframes riseBehind {
+  from {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-50%) translateY(-305px);
+    opacity: 1;
+  }
+}
