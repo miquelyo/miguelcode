@@ -4,7 +4,7 @@
   "start_url": "/login.html",
   "display": "standalone",
   "background_color": "#fff",
-  "theme_color": "#1E40AF",
+  "theme_color": "#fff",
   "icons": [
     {
       "src": "/assets/icon/icon.png",
