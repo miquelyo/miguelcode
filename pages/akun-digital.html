@@ -133,11 +133,9 @@
   </a>
 </div>
 
-
-<script>
-  document.getElementById("logoutBtn").addEventListener("click", () => alert("Logout berhasil"));
-  document.getElementById("logoutBtnMobile").addEventListener("click", () => alert("Logout berhasil"));
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="module" src="../assets/js/auth-check.js"></script>
+<script type="module" src="../assets/js/logout.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')

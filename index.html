@@ -2,110 +2,75 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- iOS Support -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="MiguelCode">
- <link rel="apple-touch-icon" href="../assets/icon/icon.png">
-<!-- Android/Chrome PWA Manifest -->
-<link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#ffffff" id="meta-theme-color">
-<!-- Favicon .ico -->
-<link rel="icon" type="image/x-icon" href="assets/icon/icon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maintenance | MiguelCode</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-<!-- Favicon PNG -->
-<link rel="icon" type="image/png" href="assets/icon/icon.png" sizes="192x192">
+    body {
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+    }
 
-<!-- Optional SVG -->
-<!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml"> -->
+    .animation {
+      width: 300px;
+      max-width: 80%;
+      margin-bottom: 30px;
+    }
 
+    h1 {
+      font-size: 2rem;
+      color: #1e3a8a;
+      margin-bottom: 10px;
+    }
 
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="assets/css/index.css" />
+    p {
+      color: #6b7280;
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .btn-login {
+      padding: 12px 24px;
+      background-color: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .btn-login:hover {
+      background-color: #1e3a8a;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Custom Header dengan Glassmorphism -->
-  <header class="glass-header">
-    <nav class="glass-nav">
-      <a href="#projects" class="active">Projects</a>
-      <a href="#experience">Work Experiences</a>
-      <a href="#writings">Latest Writings</a>
-      <a href="#contact">Contact Me</a>
-      <a href="#blog">✨ Blog</a>
-    </nav>
-  </header>
+  <!-- Simple SVG animation -->
+  <div class="animation">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="#1e40af">
+      <path d="M256 48C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48zm0 368c-88.4 0-160-71.6-160-160S167.6 96 256 96s160 71.6 160 160-71.6 160-160 160zm-24-96h48c4.4 0 8 3.6 8 8v48c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8v-48c0-4.4 3.6-8 8-8zm0-192h48c4.4 0 8 3.6 8 8v128c0 4.4-3.6 8-8 8h-48c-4.4 0-8-3.6-8-8V136c0-4.4 3.6-8 8-8z"/>
+    </svg>
+  </div>
 
-  <!-- Hero Section -->
-  <section class="hero dark-section">
-    <div class="container">
-      <h2>Hello, I'm <span>Your Name</span></h2>
-      <p>Frontend Developer • UI Enthusiast</p>
-    </div>
-  </section>
+  <h1>Website Sedang Maintenance</h1>
+  <p>Kami sedang melakukan pemeliharaan sistem. Silakan kembali nanti.</p>
+  <a href="login.html" class="btn-login">Login MiguelCode</a>
 
-  <!-- About Section -->
-  <section id="about" class="section dark-section">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae lorem vel libero porta pretium.</p>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section dark-section">
-    <div class="container">
-      <h2>Projects</h2>
-      <div class="project-list">
-        <div class="project-card">
-          <h3>Project Title</h3>
-          <p>Description of the project goes here...</p>
-        </div>
-        <!-- Tambah project lainnya di sini -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="section dark-section">
-    <div class="container">
-      <h2>Work Experience</h2>
-      <div class="experience-item">
-        <h3>Company Name</h3>
-        <p>Role - Duration</p>
-        <p>Responsibility / Achievement summary.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <form id="contactForm">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>© 2025 MyName. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script src="assets/js/index.js"></script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(() => console.log('Service Worker Registered'));
-  }
-</script>
-<script src="../assets/js/theme-color.js"></script>
 </body>
 </html>

@@ -95,28 +95,28 @@
   <div class="stat-card">
     <div class="stat-icon">📄</div>
     <div class="stat-info">
-      <h2>8</h2>
+      <h2>0</h2>
       <p>Dokumen Pribadi</p>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon">📜</div>
     <div class="stat-info">
-      <h2>5</h2>
+      <h2>0</h2>
       <p>Sertifikat</p>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon">🔐</div>
     <div class="stat-info">
-      <h2>10</h2>
+      <h2>0</h2>
       <p>Akun Digital</p>
     </div>
   </div>
   <div class="stat-card">
     <div class="stat-icon">✈️</div>
     <div class="stat-info">
-      <h2>2</h2>
+      <h2>0</h2>
       <p>Rencana Travel</p>
     </div>
   </div>
@@ -168,14 +168,10 @@
     </svg>
   </a>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
-
-  <script>
-    document.getElementById("logoutBtn").addEventListener("click", () => alert("Logout berhasil"));
-    document.getElementById("logoutBtnMobile").addEventListener("click", () => alert("Logout berhasil"));
-  </script>
-
+<script type="module" src="../assets/js/auth-check.js"></script>
+<script type="module" src="../assets/js/logout.js"></script>
   <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/service-worker.js')

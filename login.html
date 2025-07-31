@@ -8,6 +8,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="MiguelCode">
  <link rel="apple-touch-icon" href="../assets/icon/icon.png">
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Boxicons CDN -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <!-- Android/Chrome PWA Manifest -->
 <link rel="manifest" href="/manifest.json">
@@ -24,11 +28,18 @@
 <body>
 <div class="splash-screen">
   <div class="splash-logo">
-    <img src="assets/icon/icon.png" alt="Logo" />
-    <p class="typewriter">MiguelCode</p>
-  </div>
+  <!-- Simpan di dalam splash-screen -->
+<svg class="logo-svg" viewBox="0 0 300 100">
+  <text x="50%" y="50%" text-anchor="middle" font-size="40" fill="none" stroke="#0ff" stroke-width="2" font-family="'Press Start 2P', monospace" >
+    MiguelCode
+  </text>
+</svg>
+</div>
 </div>
 
+<div id="loadingScreen" class="loading-screen" style="display: none;">
+  <div class="spinner"></div>
+</div>
 
   <div class="wrapper">
     <div class="animation-wrapper">
@@ -41,8 +52,16 @@
       <form class="login-form" onsubmit="login(event)">
         <h2 style="text-align:center;">Login MiguelCode</h2>
         <input type="text" id="username" placeholder="Username" required />
-        <input type="password" id="password" placeholder="Password" required />
+        <div class="password-wrapper">
+  <input type="password" id="password" placeholder="Password" required />
+  <i class='bx bx-hide toggle-password' id="togglePassword"></i>
+</div>
+
         <button type="submit">Login</button>
+        <div class="portfolio-link">
+  <a href="index.html">Lihat Portfolio</a>
+</div>
+
       </form>
     </div>
   </div>

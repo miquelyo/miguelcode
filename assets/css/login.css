@@ -20,7 +20,7 @@ select {
 html,
 body {
   height: 100%;
-  background: #0f172a;
+  background: #000000ff;
   color: white;
   display: flex;
   justify-content: center;
@@ -136,13 +136,12 @@ body {
     opacity: 0;
   }
   to {
-    transform: translateX(-50%) translateY(-305px);
+    transform: translateX(-50%) translateY(-377px);
     opacity: 1;
   }
 }
 
-/* Splash screen */
-/* Splash screen styling */
+/* Splash screen container */
 .splash-screen {
   position: fixed;
   inset: 0;
@@ -151,8 +150,64 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: slideOutUp 1s ease 3s forwards; /* delay 3s, animasi keluar ke atas */
+  text-align: center;
+  padding: 2rem;
+  animation: slideOutUp 1s ease 3s forwards; /* animasi keluar */
 }
+
+/* Wrapper SVG logo */
+.splash-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SVG responsif */
+.splash-logo svg {
+  max-width: 90vw;
+  max-height: 50vh;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+@media (max-width: 768px) {
+  .splash-screen svg {
+    max-width: 80vw;
+    max-height: 50vh;
+  }
+}
+
+
+.logo-svg {
+  width: 80%;
+  max-width: 400px;
+  height: auto;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLogo 2s ease forwards, fadeOutSplash 1s ease 3s forwards;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+@keyframes drawLogo {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fadeOutSplash {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+}
+
 @keyframes slideOutUp {
   from {
     transform: translateY(0);
@@ -165,17 +220,6 @@ body {
 }
 
 
-
-.splash-logo {
-  text-align: center;
-  animation: slideUp 1s ease;
-}
-
-.splash-logo img {
-  width: 150px;
-  height: auto;
-  margin-bottom: 2rem;
-}
 
 /* Typing effect for MiguelCode */
 .typewriter {
@@ -261,3 +305,72 @@ body {
   }
 }
 
+/* Loading screen overlay */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Spinner animation */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top-color: #1E40AF;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tombol Lihat Portfolio */
+.portfolio-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.portfolio-link a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1E40AF;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.portfolio-link a:hover {
+  background-color: #1C3FAA;
+  transform: translateY(-2px);
+}
+
+/* Password wrapper dengan ikon toggle */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+  width: 100%;
+  padding-right: 40px; /* ruang untuk ikon */
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
