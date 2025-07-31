@@ -74,23 +74,95 @@ body {
 }
 
 /* ============================= */
-/*         Main Content          */
+/*         Main Content Fix      */
 /* ============================= */
 .main-content {
   margin-left: var(--sidebar-width);
-  padding: 2rem;
+  padding: 2rem 2rem 4rem; /* atas, kanan-kiri, bawah */
   flex: 1;
+  background-color: #fff;
+  min-height: 100vh;
 }
 
-.main-content h1 {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+/* Welcome Section */
+.welcome-section {
+  margin-bottom: 2rem;
 }
 
-.main-content p {
-  font-size: 1rem;
+/* Stats Grid */
+.stats-grid {
+  margin-bottom: 2rem;
+}
+
+/* Recent Activity Section */
+.recent-activity {
+  margin-bottom: 2rem;
+}
+
+/* Tombol Aksi Cepat */
+.action-buttons {
+  margin-top: 1.5rem;
+}
+
+/* ============================= */
+/*      Statistik Dashboard      */
+/* Digunakan di dashboard.html  */
+/* ============================= */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background-color: #F9FAFB;
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  margin-right: 1rem;
+  color: #1E40AF;
+}
+
+.stat-info h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #1E40AF;
+}
+
+.stat-info p {
+  margin: 0;
+  font-size: 0.9rem;
   color: #6B7280;
 }
+
+/* ============================= */
+/*        Page Title Bar        */
+/* ============================= */
+.page-title {
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #E5E7EB;
+  padding-bottom: 0.75rem;
+}
+
+.page-title h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1E3A8A; /* Biru gelap */
+}
+
 
 /* ============================= */
 /*      Bottom Navigation Bar    */

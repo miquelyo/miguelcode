@@ -109,7 +109,7 @@ body {
 @media (max-width: 480px) {
   html,
   body {
-    align-items: flex-start;
+    align-items: flex-center;
   }
 
   .wrapper {
@@ -140,3 +140,124 @@ body {
     opacity: 1;
   }
 }
+
+/* Splash screen */
+/* Splash screen styling */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideOutUp 1s ease 3s forwards; /* delay 3s, animasi keluar ke atas */
+}
+@keyframes slideOutUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+
+
+.splash-logo {
+  text-align: center;
+  animation: slideUp 1s ease;
+}
+
+.splash-logo img {
+  width: 150px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
+/* Typing effect for MiguelCode */
+.typewriter {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.5rem;
+  color: #0ff; /* Neon cyan */
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #0ff;
+  width: 0;
+  margin: 0 auto;
+  position: relative;
+  animation: typing 2s steps(10, end) forwards,
+             blink 0.75s step-end infinite,
+             glitch 1s infinite;
+  text-shadow:
+    0 0 5px #0ff,
+    0 0 1px #0ff,
+    0 0 1px #0ff,
+    0 0 0px #0ff;
+}
+
+
+/* Typing animation */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 11ch;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 0 red, -2px 0 blue, 0 0 10px #0ff;
+    transform: translate(0);
+  }
+  20% {
+    text-shadow: -2px 0 red, 2px 0 blue, 0 0 10px #0ff;
+    transform: translate(1px, -1px);
+  }
+  40% {
+    text-shadow: 2px 0 red, -2px 0 blue, 0 0 10px #0ff;
+    transform: translate(-1px, 1px);
+  }
+  60% {
+    text-shadow: -2px 0 red, 2px 0 blue, 0 0 10px #0ff;
+    transform: translate(1px, 1px);
+  }
+  80% {
+    text-shadow: 2px 0 red, -2px 0 blue, 0 0 10px #0ff;
+    transform: translate(-1px, -1px);
+  }
+  100% {
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+    transform: translate(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
