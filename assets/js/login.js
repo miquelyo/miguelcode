@@ -26,7 +26,7 @@ async function login(event) {
   if (loginError) {
     alert("Password salah");
   } else {
-    window.location.href = "dashboard.html";
+    window.location.href = "../../pages/dashboard.html";
   }
 }
 

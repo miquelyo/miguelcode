@@ -1,4 +1,4 @@
-import { supabase } from './supabase.js';
+import { supabase } from '../../supabase.js';
 
 const fileInput = document.getElementById('fileInput');
 const uploadBtn = document.getElementById('uploadBtn');
