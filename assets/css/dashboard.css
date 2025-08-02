@@ -500,3 +500,694 @@ main.travel-budget .total-section {
   text-decoration: underline;
   color: #1C3FAA;
 }
+
+/* ===============================
+   Modal Tambah Sertifikat (Aman Konflik)
+   Digunakan di: sertifikat.html
+   Prefix: modal-sertifikat
+================================= */
+
+.modal-sertifikat {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content-sertifikat {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px 20px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: modalFadeInUp 0.3s ease;
+}
+
+.modal-content-sertifikat h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: #1E40AF;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.modal-content-sertifikat label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.modal-content-sertifikat input,
+.modal-content-sertifikat select,
+.modal-content-sertifikat textarea {
+  width: 100%;
+  padding: 10px 14px;
+  margin-top: 6px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s;
+}
+
+.modal-content-sertifikat input:focus {
+  border-color: #1E40AF;
+  outline: none;
+  background-color: #fff;
+}
+
+.modal-content-sertifikat button[type="submit"] {
+  margin-top: 1.5rem;
+  width: 100%;
+  background-color: #1E40AF;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content-sertifikat button[type="submit"]:hover {
+  background-color: #153e9f;
+}
+
+/* Tombol Close */
+.modal-sertifikat .modal-close-sertifikat {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-sertifikat .modal-close-sertifikat:hover {
+  color: #000;
+}
+
+/* Tombol Tambah Sertifikat */
+.btn-tambah-sertifikat {
+  background-color: #1E40AF;
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  transition: background-color 0.3s;
+}
+.btn-tambah-sertifikat i {
+  font-size: 1.2rem;
+}
+.btn-tambah-sertifikat:hover {
+  background-color: #153e9f;
+}
+
+/* Animasi */
+@keyframes modalFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .modal-content-sertifikat {
+    padding: 20px 16px;
+  }
+}
+
+/* Noted: Tabel sertifikat - digunakan di sertifikat.html */
+.table-sertifikat {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.table-sertifikat thead {
+  background-color: #f8f9fa;
+}
+
+.table-sertifikat th,
+.table-sertifikat td {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.table-sertifikat tbody tr:hover {
+  background-color: #f0f4ff;
+}
+
+.table-sertifikat td img {
+  border-radius: 6px;
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.table-sertifikat td img:hover {
+  transform: scale(1.1);
+}
+
+.table-sertifikat .btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #1E40AF;
+  padding: 6px;
+  transition: color 0.2s ease;
+}
+
+.table-sertifikat .btn-icon:hover {
+  color: #0e256c;
+}
+
+.table-sertifikat .btn-icon i {
+  pointer-events: none;
+}
+
+/* Noted: Wrapper tabel agar scroll di layar kecil - sertifikat.html */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Noted: Modal Preview Sertifikat */
+/* Noted: modal preview file (gambar/pdf) di halaman sertifikat.html dan dokumen.html */
+.modal-preview-sertifikat {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none; /* default hidden */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-preview-sertifikat.active {
+  display: flex;
+}
+
+.modal-content-sertifikat {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Tombol close (X) */
+.modal-content-sertifikat .close-preview {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Kontainer preview (gambar/pdf) */
+#preview-container-sertifikat img,
+#preview-container-sertifikat iframe {
+  max-width: 100%;
+  max-height: 500px;
+  border-radius: 6px;
+}
+
+
+.modal-content-sertifikat {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow: auto;
+  animation: slideIn 0.3s ease;
+  position: relative;
+}
+
+.modal-content-sertifikat iframe,
+.modal-content-sertifikat img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  border-radius: 8px;
+}
+
+/* Close Button */
+.modal-content-sertifikat .close-preview {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Animasi modal */
+@keyframes slideIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Noted: Pagination Sertifikat */
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  color: #333;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.pagination button.active {
+  background-color: #1E40AF;
+  color: white;
+  border-color: #1E40AF;
+}
+
+.pagination button:hover {
+  background-color: #e0e7ff;
+}
+
+.travel-table-wrapper {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.travel-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 600px;
+}
+
+.travel-table th,
+.travel-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.travel-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* ==== travel-detail.html Styles (Note: digunakan di halaman travel-detail) ==== */
+
+.main-content.travel-budget-page {
+  padding: 2rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.main-content.travel-budget-page h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #1E3A8A;
+}
+
+.main-content.travel-budget-page #deskripsi {
+  font-size: 1rem;
+  color: #6B7280;
+  margin-bottom: 1.5rem;
+}
+
+.travel-table-wrapper {
+  overflow-x: auto;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+}
+
+#itinerary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+#itinerary-table th,
+#itinerary-table td {
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+#itinerary-table th {
+  background-color: #e0e7ff;
+  font-weight: 600;
+}
+
+#itinerary-table td[contenteditable="true"] {
+  background-color: #fef9c3;
+  outline: none;
+}
+
+#travelTableFoot td {
+  font-weight: 600;
+  background-color: #f3f4f6;
+}
+
+#backButton {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #1E40AF;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#backButton:hover {
+  background-color: #1E3A8A;
+}
+
+.budget-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#currency {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.digital-password-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.digital-password-modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 350px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+.digital-password-modal-content h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.digital-password-modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.digital-password-modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.digital-password-modal-actions button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #1E40AF;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.digital-password-modal-actions button:hover {
+  background: #3749c4;
+}
+
+/* ==========================================================================
+   STYLE UNTUK HALAMAN akun-digital.html
+   ========================================================================== */
+
+/* Kontainer utama halaman akun digital */
+.main-content-digital {
+  padding: 2rem;
+  padding-left: 240px; /* agar tidak tertindih sidebar */
+}
+
+/* Judul halaman dan tombol tambah akun */
+.digital-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.digital-title h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+/* Tombol tambah akun digital */
+.digital-btn-add {
+  background-color: #4F46E5; /* ungu */
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  transition: background-color 0.3s;
+}
+
+.digital-btn-add:hover {
+  background-color: #4338CA;
+}
+
+/* Tabel data akun digital */
+.digital-table-wrapper {
+  overflow-x: auto;
+}
+
+.digital-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.digital-data-table thead {
+  background-color: #f9fafb;
+}
+
+.digital-data-table th,
+.digital-data-table td {
+  text-align: left;
+  padding: 1rem;
+  font-size: 0.95rem;
+}
+
+.digital-data-table tbody tr:nth-child(even) {
+  background-color: #f3f4f6;
+}
+
+.digital-data-table th {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.digital-data-table td {
+  color: #374151;
+}
+
+/* Modal Tambah Akun */
+.digital-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.digital-modal.show {
+  display: flex;
+}
+
+.digital-modal-content {
+  background-color: white;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.digital-modal-content h2 {
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1E293B;
+}
+
+.digital-modal-content label {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.digital-modal-content input,
+.digital-modal-content textarea {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Tombol dalam modal */
+.digital-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.digital-btn-save {
+  background-color: #1E40AF;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.digital-btn-cancel {
+  background-color: #e5e7eb;
+  color: #111827;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Tombol Aksi (Lihat / Hapus) */
+.digital-action-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #1E3A8A;
+  font-size: 1rem;
+  padding: 0.25rem;
+  transition: color 0.3s;
+}
+
+.digital-action-btn:hover {
+  color: #EF4444;
+}
+
+/* ==========================================================================
+   Responsif Mobile (akun-digital.html)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .main-content-digital {
+    padding: 1rem;
+    padding-bottom: 80px; /* untuk memberi ruang bagi bottom nav */
+  }
+
+  .digital-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .digital-btn-add {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .digital-modal-content {
+    width: 90%;
+  }
+}
