@@ -1,7 +1,13 @@
+"use client"
+
 import { useAnimation, useInView, motion } from "framer-motion"
 import { useTheme } from "next-themes"
 import { useEffect, useRef } from "react"
-import GitHubCalendar from "react-github-calendar"
+import dynamic from "next/dynamic"
+
+const GitHubCalendarNoSSR = dynamic(() => import("react-github-calendar"), {
+  ssr: false,
+})
 
 export default function GithubGraph() {
   const { resolvedTheme } = useTheme()
@@ -41,8 +47,8 @@ export default function GithubGraph() {
       variants={AnimationGithub}
       className="flex items-center justify-center rounded-xl bg-zinc-200 p-4 dark:bg-zinc-800"
     >
-      <GitHubCalendar
-        username="aafrzl"
+      <GitHubCalendarNoSSR
+        username="miquelyo"
         labels={{
           totalCount: "{{count}} contributions in the last half year",
         }}

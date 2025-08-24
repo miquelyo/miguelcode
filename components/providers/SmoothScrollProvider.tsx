@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useRef } from "react"
 
 export const SmoothScrollContext = createContext({
   scroll: null as LocomotiveScroll | null,
@@ -15,35 +15,45 @@ export const SmoothScrollProvider = ({
   children,
   options,
 }: SmoothScrollProviderProps) => {
-  const [scroll, setScroll] = useState<LocomotiveScroll | null>(null)
+  const scrollRef = useRef<LocomotiveScroll | null>(null)
 
   useEffect(() => {
-    if (!scroll) {
-      ;(async () => {
-        try {
-          const LocomotiveScroll = (await import("locomotive-scroll")).default
+    let mounted = true
 
-          setScroll(
-            new LocomotiveScroll({
-              el: document.querySelector("[data-scroll-container]"),
-              ...options,
-            })
-          )
-        } catch (error) {
-          throw Error(`[SmoothScrollProvider]: ${error}`)
-        }
-      })()
-    }
+    ;(async () => {
+      try {
+        if (typeof window === "undefined") return
+        if (scrollRef.current) return
+        const LocomotiveScroll = (await import("locomotive-scroll")).default
+        const el = document.querySelector(
+          "[data-scroll-container]"
+        ) as HTMLElement | null
+        if (!el) return
+        if (!mounted) return
+        scrollRef.current = new LocomotiveScroll({
+          el,
+          ...options,
+        })
+      } catch (error) {
+        console.error(`[SmoothScrollProvider]:`, error)
+      }
+    })()
 
     return () => {
-      scroll?.destroy()
+      mounted = false
+      if (scrollRef.current) {
+        try {
+          scrollRef.current.destroy()
+        } catch {}
+        scrollRef.current = null
+      }
     }
-  }, [options, scroll])
+  }, [options])
 
   return (
     <SmoothScrollContext.Provider
       value={{
-        scroll,
+        scroll: scrollRef.current,
       }}
     >
       {children}

@@ -47,7 +47,7 @@ export default function ProjectCard({
       initial="hidden"
       variants={projectCardAnimation}
       aria-hidden="true"
-      className="relative z-10 h-[550px] w-full items-stretch justify-center overflow-hidden rounded-3xl border border-foreground/20 bg-zinc-200 dark:bg-zinc-800"
+      className="relative z-10 h-[420px] sm:h-[480px] md:h-[520px] lg:h-[550px] w-full items-stretch justify-center overflow-hidden rounded-3xl border border-foreground/20 bg-zinc-200 dark:bg-zinc-800"
     >
       <motion.div
         ref={ref}
@@ -61,7 +61,7 @@ export default function ProjectCard({
           height={600}
           src={image}
           alt={title}
-          className="absolute -bottom-2 right-0 w-[85%] object-contain md:w-[60%] lg:max-w-[55%]"
+          className="absolute -bottom-2 right-0 w-[88%] sm:w-[80%] md:w-[60%] lg:max-w-[55%] object-contain pointer-events-none"
         />
       </motion.div>
       <motion.div
@@ -70,7 +70,7 @@ export default function ProjectCard({
         initial="hidden"
         variants={projectCardLinksAnimation}
         aria-hidden="true"
-        className="absolute left-0 top-0 ml-8 mt-6 flex items-center justify-center gap-4 lg:ml-14 lg:mt-10"
+        className="absolute left-0 top-0 ml-4 mt-4 flex items-center justify-center gap-3 sm:ml-6 sm:mt-5 md:ml-8 md:mt-6 lg:ml-14 lg:mt-10"
       >
         <Link
           href={repo}
@@ -90,8 +90,8 @@ export default function ProjectCard({
         </Link>
       </motion.div>
 
-      <div className="absolute left-10 top-32 mb-10 ml-0 text-foreground lg:top-52 lg:mb-14 lg:ml-4">
-        <h3 className="max-w-[90%] text-5xl font-bold leading-none text-foreground md:text-4xl md:leading-none lg:max-w-[450px] lg:text-5xl lg:leading-none">
+      <div className="absolute left-6 top-24 mb-8 ml-0 text-foreground sm:left-8 sm:top-28 md:left-10 md:top-32 lg:top-52 lg:mb-14 lg:ml-4">
+        <h3 className="max-w-[90%] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight md:leading-tight text-foreground lg:max-w-[450px]">
           <motion.span
             ref={ref}
             animate={ctrls}
@@ -102,7 +102,7 @@ export default function ProjectCard({
             {title}
           </motion.span>
         </h3>
-        <p className="mt-4 w-[90%] max-w-[454px] text-xs font-semibold text-foreground/50">
+        <p className="mt-3 w-[92%] max-w-[520px] text-xs sm:text-sm font-semibold text-foreground/60">
           <motion.span
             ref={ref}
             animate={ctrls}
@@ -119,7 +119,7 @@ export default function ProjectCard({
           initial="hidden"
           variants={projectCardTechAnimation}
           aria-hidden="true"
-          className="mt-9 flex gap-4"
+          className="mt-6 flex flex-wrap gap-3 sm:gap-4"
         >
           {tech.map((tech, index) => (
             <p

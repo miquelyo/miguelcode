@@ -3,17 +3,13 @@
 export const getAccessToken = async () => {
   const myHeaders = new Headers()
   myHeaders.append("Content-Type", "application/x-www-form-urlencoded")
+  const basic = Buffer.from(
+    `${process.env.NEXT_PUBLIC_CLIENT_ID_SPOTIFY}:${process.env.NEXT_PUBLIC_CLIENT_SECRET_SPOTIFY}`
+  ).toString("base64")
+  myHeaders.append("Authorization", `Basic ${basic}`)
 
   const urlencoded = new URLSearchParams()
-  urlencoded.append(
-    "client_id",
-    process.env.NEXT_PUBLIC_CLIENT_ID_SPOTIFY as string
-  )
-  urlencoded.append(
-    "client_secret",
-    process.env.NEXT_PUBLIC_CLIENT_SECRET_SPOTIFY as string
-  )
-  urlencoded.append("grant_type", "refresh_token")
+      urlencoded.append("grant_type", "refresh_token")
   urlencoded.append(
     "refresh_token",
     process.env.NEXT_PUBLIC_REFRESH_TOKEN_SPOTIFY as string
@@ -40,7 +36,7 @@ export const getAccessToken = async () => {
 
 export async function getCurrentTrack(accessToken: string) {
   const myHeaders = new Headers();
-  myHeaders.append('Authorization', `Bearer ${accessToken}}`);
+  myHeaders.append('Authorization', `Bearer ${accessToken}`);
 
   const requestOptions = {
     method: 'GET',
@@ -63,7 +59,7 @@ export async function getCurrentTrack(accessToken: string) {
 
 export async function getLastPlayedTrack(accessToken: string) {
   const myHeaders = new Headers()
-  myHeaders.append("Authorization", `Bearer ${accessToken}}`)
+  myHeaders.append("Authorization", `Bearer ${accessToken}`)
 
   const requestOptions = {
     method: "GET",

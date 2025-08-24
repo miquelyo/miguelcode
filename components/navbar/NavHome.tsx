@@ -24,8 +24,7 @@ export default function NavHome() {
       <div className="overflow-hidden pb-1">
         <Link href="/" className="group inline-flex items-center gap-x-2">
           <Code2 className="h-6 w-6 transition-transform duration-300 ease-in-out group-hover:rotate-[20deg]" />
-          <p className="text-md font-semibold uppercase">Coding with Afrizal</p>
-        </Link>
+                  </Link>
       </div>
     </div>
   )

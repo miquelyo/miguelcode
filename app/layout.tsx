@@ -9,21 +9,21 @@ const font = Work_Sans({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    template: "Coding with Afrizal | %s",
-    default: "Coding with Afrizal | Frontend Developer",
+    template: "MiguelCode | %s",
+    default: "MiguelCode | Frontend Developer",
   },
   description:
     "A seasoned frontend web developer with a passion for creating engaging and interactive websites.",
-  metadataBase: new URL("https://aafrzl.my.id"),
+  metadataBase: new URL("https://miguelcode.my.id"),
   openGraph: {
     title: {
-      template: "Coding with Afrizal | %s",
-      default: "Coding with Afrizal | Frontend Developer",
+      template: "MiguelCode | %s",
+      default: "MiguelCode | Frontend Developer",
     },
     description:
       "A seasoned frontend web developer with a passion for creating engaging and interactive websites.",
-    url: "https://aafrzl.my.id",
-    siteName: "Coding with Afrizal",
+    url: "https://miguelcode.my.id",
+    siteName: "MiguelCode",
     images: [
       {
         url: "/public/images/og-images.jpg",
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     type: "website",
   },
   keywords: [
-    "afrizal mufriz fouji",
-    "afrizal",
-    "coding with afrizal",
+    "Miguel",
+    "Miguel",
+    "MiguelCode",
     "frontend web developer",
     "frontend developer",
     "frontend engineer",
@@ -67,12 +67,12 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: {
-      template: "Coding with Afrizal | %s",
-      default: "Coding with Afrizal | Frontend Developer",
+      template: "MiguelCode | %s",
+      default: "MiguelCode | Frontend Developer",
     },
     description:
       "A seasoned frontend web developer with a passion for creating engaging and interactive websites.",
-    creator: "@aafrzl",
+    creator: "@Miguel",
     images: [
       {
         url: "/public/images/og-images.jpg",

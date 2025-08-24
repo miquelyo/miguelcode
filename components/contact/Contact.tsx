@@ -17,7 +17,7 @@ export default function Contact() {
         <div className="contact-content relative flex min-h-[100svh] w-full flex-col items-center justify-between pt-12">
           <ContactTitle title="Contact" />
           <ContactForm />
-          <div className="flex w-full justify-between py-12">
+          <div className="flex w-full flex-col gap-8 py-12 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-4 text-xl font-semibold text-zinc-200 dark:text-zinc-800">
                 Github
