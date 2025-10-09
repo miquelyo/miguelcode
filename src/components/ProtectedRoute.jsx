@@ -1,14 +1,14 @@
 // src/components/ProtectedRoute.jsx
+import React from 'react'; // Impor React
 import { Navigate } from 'react-router-dom';
 
 function ProtectedRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
-    // Jika belum login, "tendang" pengguna ke halaman login
     return <Navigate to="/login" replace />;
   }
 
-  // Jika sudah login, tampilkan halaman yang diminta
-  return children;
+  // Meneruskan props 'onLogout' ke children (PrivateData)
+  return React.cloneElement(children, { onLogout: children.props.onLogout });
 }
 
 export default ProtectedRoute;

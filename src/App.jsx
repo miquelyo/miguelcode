@@ -1,48 +1,41 @@
 // src/App.jsx
 
-import { useState, useEffect } from 'react'; // DIUBAH: Tambahkan useEffect
+import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { supabase } from './supabaseClient'; // BARU: Impor konektor Supabase
-
 import Portfolio from './pages/Portfolio';
 import Login from './pages/Login';
 import PrivateData from './pages/PrivateData';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Cek localStorage saat pertama kali dimuat untuk menjaga sesi login
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem('isLoggedIn') === 'true';
+  });
+  
   const navigate = useNavigate();
 
-  // --- KODE TES KONEKSI SUPABASE ---
-  // BARU: Blok ini akan berjalan satu kali saat aplikasi pertama kali dimuat.
-  useEffect(() => {
-    const tesKoneksi = async () => {
-      console.log("Mencoba mengambil data dari Supabase...");
-      
-      // Mengambil data dari tabel 'dokumen'
-      const { data, error } = await supabase.from('dokumen').select('*');
-
-      if (error) {
-        console.error("Koneksi Gagal:", error.message);
-      } else {
-        console.log("Koneksi Berhasil! Data:", data);
-      }
-    };
-
-    tesKoneksi(); // Jalankan fungsi tes
-  }, []); // Array kosong berarti efek ini hanya berjalan sekali
-  // --- AKHIR KODE TES ---
-
-  // Logika login lama (tidak apa-apa biarkan saja untuk sekarang)
+  // Fungsi untuk menangani proses login
   const handleLogin = (password) => {
-    const correctPassword = 'rahasia123';
+    // Ganti 'rahasia123' dengan password Anda
+    const correctPassword = 'migel69';
 
     if (password === correctPassword) {
+      // Simpan status login ke localStorage
+      localStorage.setItem('isLoggedIn', 'true');
       setIsLoggedIn(true);
       navigate('/privatedata');
     } else {
       alert('Password salah!');
     }
+  };
+  
+  // Fungsi untuk menangani proses logout
+  const handleLogout = () => {
+    // Hapus status login dari localStorage
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+    navigate('/login');
   };
 
   return (
@@ -54,7 +47,8 @@ function App() {
         path="/privatedata"
         element={
           <ProtectedRoute isLoggedIn={isLoggedIn}>
-            <PrivateData />
+            {/* Kirim fungsi handleLogout ke PrivateData */}
+            <PrivateData onLogout={handleLogout} /> 
           </ProtectedRoute>
         }
       />
