@@ -1,4 +1,3 @@
-// src/pages/PrivateData.jsx
 import { useState } from 'react';
 import Dokumen from '../components/Dokumen';
 import Sertifikat from '../components/Sertifikat';
@@ -72,16 +71,19 @@ function PrivateData({ onLogout }) {
         </AnimatePresence>
       </main>
 
-      {/* Navigasi Bawah Khusus Mobile */}
-      <footer className="fixed bottom-4 inset-x-4 bg-gray-800/80 backdrop-blur-lg border border-white/10 p-2 flex justify-around items-center rounded-full shadow-lg md:hidden z-10">
+      {/* Navigasi Bawah Kaca Khusus Mobile */}
+      <footer 
+        className="fixed bottom-4 inset-x-4 bg-white/5 backdrop-blur-lg border border-white/20 p-2 
+                   flex justify-around items-center rounded-full shadow-lg md:hidden z-10"
+      >
         {navItems.map((item) => (
           <button 
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`flex flex-col items-center justify-center w-full rounded-lg py-2 transition-colors ${
+            className={`flex flex-col items-center justify-center w-full rounded-full py-2 transition-all duration-300 ${
               activeTab === item.id 
-              ? 'text-indigo-400' 
-              : 'text-gray-400 hover:bg-gray-700/50'
+              ? 'bg-gray-700/50 text-white' 
+              : 'text-gray-400 hover:bg-white/10'
             }`}
           >
             {item.icon}
@@ -94,3 +96,4 @@ function PrivateData({ onLogout }) {
 }
 
 export default PrivateData;
+

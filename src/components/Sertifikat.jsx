@@ -1,4 +1,3 @@
-// src/components/Sertifikat.jsx
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 import { FiExternalLink, FiDownload, FiEdit, FiTrash2, FiPlus } from 'react-icons/fi';
@@ -54,7 +53,12 @@ function Sertifikat({ refreshKey, onDataChange }) {
   return (
     <>
       <div className="flex justify-end mb-4">
-        <button className="btn btn-primary btn-sm" onClick={() => uploadModal.current.showModal()}>
+        <button 
+          className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white 
+                     bg-white/5 backdrop-blur-sm border border-white/20 
+                     hover:bg-white/10 transition-colors"
+          onClick={() => uploadModal.current.showModal()}
+        >
           <FiPlus /> Tambah Sertifikat
         </button>
       </div>
@@ -115,4 +119,5 @@ function Sertifikat({ refreshKey, onDataChange }) {
     </>
   );
 }
+
 export default Sertifikat;

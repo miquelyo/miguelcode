@@ -1,8 +1,6 @@
-// src/components/DashboardView.jsx
 import { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import StatCard from './StatCard';
-// DIUBAH: Impor 'motion' sebagai 'Motion' (dengan huruf besar)
 import { motion as Motion } from 'framer-motion';
 
 function DashboardView({ refreshKey }) {
@@ -10,18 +8,11 @@ function DashboardView({ refreshKey }) {
   const [sertifikatCount, setSertifikatCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // Varian animasi untuk kontainer
+  // Varian animasi
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
   };
-
-  // Varian animasi untuk setiap item
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.5 } }
@@ -52,25 +43,24 @@ function DashboardView({ refreshKey }) {
   }
 
   return (
-    // DIUBAH: Gunakan Motion.div
     <Motion.div 
       className="flex flex-col gap-4"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      {/* DIUBAH: Gunakan Motion.div */}
+      {/* DIUBAH: Welcome Card sekarang menggunakan efek kaca */}
       <Motion.div 
-        className="bg-indigo-600 p-6 rounded-xl shadow-lg text-white"
+        className="p-6 rounded-xl shadow-lg bg-white/5 backdrop-blur-lg border border-white/10"
         variants={itemVariants}
       >
-        <h2 className="text-xl font-bold">Welcome Back, Miguel!</h2>
-        <p className="mt-1 text-indigo-200">How are you today?</p>
+        <h2 className="text-xl font-bold text-white">Selamat Datang, Miguel!</h2>
+        <p className="mt-1 text-gray-400">Always Try Hard bruhhh.</p>
       </Motion.div>
 
       <div className="grid grid-cols-2 gap-4">
-        <StatCard title="Total Dokumen" value={dokumenCount} subtitle="Dokumen" />
-        <StatCard title="Total Sertifikat" value={sertifikatCount} subtitle="Sertifikat" />
+        <StatCard title="Total Dokumen" value={dokumenCount} subtitle="Dokumen terverifikasi" />
+        <StatCard title="Total Sertifikat" value={sertifikatCount} subtitle="Sertifikat didapatkan" />
       </div>
     </Motion.div>
   );

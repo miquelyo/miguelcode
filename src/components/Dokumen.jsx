@@ -9,14 +9,8 @@ function Dokumen({ refreshKey, onDataChange }) {
   const [loading, setLoading] = useState(true);
   const uploadModal = useRef(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.05 } }
-  };
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0 }
-  };
+  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.05 } } };
+  const itemVariants = { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } };
 
   async function fetchDokumen() {
     setLoading(true);
@@ -44,16 +38,19 @@ function Dokumen({ refreshKey, onDataChange }) {
     onDataChange();
   };
 
-  useEffect(() => {
-    fetchDokumen();
-  }, [refreshKey]);
+  useEffect(() => { fetchDokumen(); }, [refreshKey]);
 
   if (loading) return <p className="text-gray-400">Memuat data dokumen...</p>;
 
   return (
     <>
       <div className="flex justify-end mb-4">
-        <button className="btn btn-primary btn-sm" onClick={() => uploadModal.current.showModal()}>
+        <button 
+          className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white 
+                     bg-white/5 backdrop-blur-sm border border-white/20 
+                     hover:bg-white/10 transition-colors"
+          onClick={() => uploadModal.current.showModal()}
+        >
           <FiPlus /> Tambah Dokumen
         </button>
       </div>
@@ -71,21 +68,13 @@ function Dokumen({ refreshKey, onDataChange }) {
             </thead>
             <Motion.tbody variants={containerVariants} initial="hidden" animate="visible" className="divide-y divide-white/10">
               {dokumenList.length === 0 ? (
-                <Motion.tr variants={itemVariants}>
-                  <td colSpan="4" className="px-6 py-4 text-center">Belum ada dokumen.</td>
-                </Motion.tr>
+                <Motion.tr variants={itemVariants}><td colSpan="4" className="px-6 py-4 text-center">Belum ada dokumen.</td></Motion.tr>
               ) : (
                 dokumenList.map((dokumen) => (
                   <Motion.tr key={dokumen.id} variants={itemVariants} className="hover:bg-white/5">
-                    <td className="p-4">
-                      <img src={dokumen.file_url} alt={dokumen.nama_dokumen} className="w-20 h-12 object-cover rounded-md" />
-                    </td>
-                    <td className="px-6 py-4 font-medium text-white whitespace-nowrap">
-                      {dokumen.nama_dokumen}
-                    </td>
-                    <td className="px-6 py-4">
-                      {new Date(dokumen.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })}
-                    </td>
+                    <td className="p-4"><img src={dokumen.file_url} alt={dokumen.nama_dokumen} className="w-20 h-12 object-cover rounded-md" /></td>
+                    <td className="px-6 py-4 font-medium text-white whitespace-nowrap">{dokumen.nama_dokumen}</td>
+                    <td className="px-6 py-4">{new Date(dokumen.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex justify-end items-center gap-2">
                         <button className="btn btn-ghost btn-xs" onClick={() => alert('Fitur Edit segera hadir!')}><FiEdit /></button>
