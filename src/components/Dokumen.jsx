@@ -23,25 +23,34 @@ function Dokumen({ refreshKey }) {
   if (loading) return <p>Memuat data dokumen...</p>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    // Kontainer utama sekarang adalah flex column dengan jarak antar item
+    <div className="flex flex-col gap-4">
       {dokumenList.length === 0 ? (
-        <p className="col-span-full">Belum ada dokumen.</p>
+        <p>Belum ada dokumen.</p>
       ) : (
         dokumenList.map((dokumen) => (
-          <div key={dokumen.id} className="bg-white rounded-lg shadow-md overflow-hidden">
+          // Setiap item adalah sebuah baris dengan hover effect
+          <div key={dokumen.id} className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col sm:flex-row items-center transition-all hover:shadow-lg hover:scale-[1.02]">
+            {/* Gambar Thumbnail di Kiri */}
             <img 
               src={dokumen.file_url} 
               alt={dokumen.nama_dokumen} 
-              className="h-48 w-full object-cover" 
+              // Ukuran gambar lebih kecil dan tetap
+              className="h-32 w-full sm:w-40 object-cover flex-shrink-0"
             />
-            <div className="p-4">
-              {/* DIUBAH: Tambahkan 'text-gray-800' untuk memastikan teks berwarna gelap */}
-              <h3 className="font-semibold text-lg truncate text-gray-800">{dokumen.nama_dokumen}</h3>
+            {/* Konten Teks di Kanan */}
+            <div className="p-4 flex flex-col justify-between flex-grow w-full">
+              <div>
+                <h3 className="font-bold text-lg text-gray-800">{dokumen.nama_dokumen}</h3>
+                <p className="text-xs text-gray-500 mt-1">
+                  Diunggah: {new Date(dokumen.created_at).toLocaleDateString('id-ID')}
+                </p>
+              </div>
               <a 
                 href={dokumen.file_url} 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-sm text-indigo-600 hover:text-indigo-800 mt-2 inline-block"
+                className="text-sm text-indigo-600 hover:text-indigo-800 mt-3 self-start"
               >
                 Lihat Detail
               </a>

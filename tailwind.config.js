@@ -1,6 +1,4 @@
 // tailwind.config.js
-
-// BARU: Impor daisyui di bagian atas menggunakan sintaks 'import'
 import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
@@ -10,8 +8,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        // Ganti 'Inter' menjadi 'Poppins' di sini
+        sans: ['Poppins', 'sans-serif'],
+      },
+    },
   },
-  // DIUBAH: Gunakan variabel daisyui di sini, bukan require()
   plugins: [daisyui],
 }
