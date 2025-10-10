@@ -1,16 +1,12 @@
 // tailwind.config.js
 import daisyui from "daisyui";
 
-/** @type {import('tailwindcss').Config} */
 export default {
-  // BARU: Tambahkan baris ini
   darkMode: 'class',
-  
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  // ... sisa file tetap sama
   theme: {
     extend: {
       fontFamily: {
@@ -18,5 +14,17 @@ export default {
       },
     },
   },
+  // DIUBAH: Tambahkan konfigurasi tema daisyUI
   plugins: [daisyui],
+  daisyui: {
+    themes: ["dark", {
+      mytheme: {
+        "primary": "#2dd4bf", // Warna Teal
+        "secondary": "#f6d860",
+        "accent": "#37cdbe",
+        "neutral": "#3d4451",
+        "base-100": "#ffffff",
+      },
+    }],
+  },
 }

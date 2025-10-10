@@ -64,13 +64,13 @@ function DashboardView({ refreshKey }) {
         className="bg-indigo-600 p-6 rounded-xl shadow-lg text-white"
         variants={itemVariants}
       >
-        <h2 className="text-2xl font-bold">Selamat Datang, Miguel!</h2>
-        <p className="mt-1 text-indigo-200">Semua file Anda aman tersimpan di sini.</p>
+        <h2 className="text-xl font-bold">Welcome Back, Miguel!</h2>
+        <p className="mt-1 text-indigo-200">How are you today?</p>
       </Motion.div>
 
       <div className="grid grid-cols-2 gap-4">
-        <StatCard title="Total Dokumen" value={dokumenCount} subtitle="Dokumen terverifikasi" />
-        <StatCard title="Total Sertifikat" value={sertifikatCount} subtitle="Sertifikat didapatkan" />
+        <StatCard title="Total Dokumen" value={dokumenCount} subtitle="Dokumen" />
+        <StatCard title="Total Sertifikat" value={sertifikatCount} subtitle="Sertifikat" />
       </div>
     </Motion.div>
   );
