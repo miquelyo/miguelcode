@@ -1,8 +1,11 @@
+// src/pages/PrivateData.jsx
 import { useState } from 'react';
 import Dokumen from '../components/Dokumen';
 import Sertifikat from '../components/Sertifikat';
 import DashboardView from '../components/DashboardView';
-import { FiGrid, FiFileText, FiAward, FiLogOut } from 'react-icons/fi';
+import Projects from '../components/Projects';
+import Activities from '../components/Activities';
+import { FiGrid, FiFileText, FiAward, FiLogOut, FiClipboard, FiCheckSquare } from 'react-icons/fi';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 function PrivateData({ onLogout }) { 
@@ -14,9 +17,11 @@ function PrivateData({ onLogout }) {
   };
 
   const navItems = [
-    { id: 'dashboard', name: 'Dashboard', icon: <FiGrid size={24} /> },
-    { id: 'dokumen', name: 'Dokumen', icon: <FiFileText size={24} /> },
-    { id: 'sertifikat', name: 'Sertifikat', icon: <FiAward size={24} /> },
+    { id: 'dashboard', name: 'Dashboard', icon: <FiGrid size={22} /> },
+    { id: 'projects', name: 'Projects', icon: <FiClipboard size={22} /> },
+    { id: 'activities', name: 'Aktivitas', icon: <FiCheckSquare size={22} /> },
+    { id: 'dokumen', name: 'Documents', icon: <FiFileText size={22} /> },
+    { id: 'sertifikat', name: 'Certificates', icon: <FiAward size={22} /> },
   ];
   
   return (
@@ -32,7 +37,7 @@ function PrivateData({ onLogout }) {
             <button key={item.id} onClick={() => setActiveTab(item.id)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors ${
                 activeTab === item.id 
-                ? 'bg-indigo-600 text-white' 
+                ? 'bg-gray-700 text-white' 
                 : 'text-gray-300 hover:bg-gray-700 hover:text-white'
               }`}
             >
@@ -49,13 +54,42 @@ function PrivateData({ onLogout }) {
 
       {/* Konten Utama */}
       <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto pb-24 md:pb-8">
-        <div className="flex justify-between items-center pb-4 mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold">
-            {navItems.find(item => item.id === activeTab)?.name}
-          </h1>
-          <button onClick={onLogout} className="btn btn-ghost btn-sm hidden md:flex"><FiLogOut /></button>
-        </div>
         
+        {/* ====== HEADER BARU ====== */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 mb-6 border-b border-gray-800">
+          <div>
+            <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+              {navItems.find(item => item.id === activeTab)?.name}
+            </h1>
+
+            {activeTab === 'dashboard' && (
+              <p className="text-gray-400 mt-1 flex items-center gap-2">
+                {new Date().toLocaleDateString('id-ID', {
+                  weekday: 'long',
+                  day: 'numeric',
+                  month: 'long',
+                  year: 'numeric'
+                })}{" "}
+                <span className="text-blue-400">🤘</span>
+              </p>
+            )}
+
+            {activeTab !== 'dashboard' && (
+              <p className="text-gray-400 mt-1">
+                Kelola data {navItems.find(item => item.id === activeTab)?.name.toLowerCase()} kamu
+              </p>
+            )}
+          </div>
+
+          <button 
+            onClick={onLogout} 
+            className="hidden md:flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white font-medium transition-all"
+          >
+            <FiLogOut /> Logout
+          </button>
+        </div>
+
+        {/* ====== ANIMATED PAGE CONTENT ====== */}
         <AnimatePresence mode="wait">
           <Motion.div
             key={activeTab}
@@ -65,29 +99,33 @@ function PrivateData({ onLogout }) {
             transition={{ duration: 0.3 }}
           >
             {activeTab === 'dashboard' && <DashboardView refreshKey={refreshKey} />}
+            {activeTab === 'projects' && <Projects refreshKey={refreshKey} onDataChange={handleDataChange} />}
+            {activeTab === 'activities' && <Activities refreshKey={refreshKey} onDataChange={handleDataChange} />}
             {activeTab === 'dokumen' && <Dokumen refreshKey={refreshKey} onDataChange={handleDataChange} />}
             {activeTab === 'sertifikat' && <Sertifikat refreshKey={refreshKey} onDataChange={handleDataChange} />}
           </Motion.div>
         </AnimatePresence>
       </main>
 
-      {/* Navigasi Bawah Kaca Khusus Mobile */}
-      <footer 
-        className="fixed bottom-4 inset-x-4 bg-white/5 backdrop-blur-lg border border-white/20 p-2 
-                   flex justify-around items-center rounded-full shadow-lg md:hidden z-10"
-      >
+      {/* ====== NAVIGASI BAWAH ====== */}
+      <footer className="fixed bottom-4 inset-x-4 bg-gray-900/70 backdrop-blur-lg border border-white/10 p-2 flex justify-around items-center rounded-full shadow-lg md:hidden z-10">
         {navItems.map((item) => (
           <button 
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`flex flex-col items-center justify-center w-full rounded-full py-2 transition-all duration-300 ${
-              activeTab === item.id 
-              ? 'bg-gray-700/50 text-white' 
-              : 'text-gray-400 hover:bg-white/10'
+            className={`flex items-center justify-center w-full rounded-full py-3 transition-colors relative ${
+              activeTab === item.id ? 'text-white' : 'text-gray-400 hover:text-white'
             }`}
           >
-            {item.icon}
-            <span className="text-xs mt-1 font-semibold">{item.name}</span>
+            {activeTab === item.id && (
+              <Motion.div
+                layoutId="active-bottom-nav-pill"
+                className="absolute inset-0 bg-white/10"
+                style={{ borderRadius: 9999 }}
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+            <div className="relative z-10">{item.icon}</div>
           </button>
         ))}
       </footer>
@@ -96,4 +134,3 @@ function PrivateData({ onLogout }) {
 }
 
 export default PrivateData;
-
