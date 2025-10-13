@@ -1,11 +1,10 @@
-// src/pages/PrivateData.jsx
 import { useState } from 'react';
 import Dokumen from '../components/Dokumen';
 import Sertifikat from '../components/Sertifikat';
 import DashboardView from '../components/DashboardView';
 import Projects from '../components/Projects';
-import Activities from '../components/Activities';
-import { FiGrid, FiFileText, FiAward, FiLogOut, FiClipboard, FiCheckSquare } from 'react-icons/fi';
+import ExpenseTracker from '../components/ExpenseTracker'; // Pastikan file ini ada
+import { FiGrid, FiFileText, FiAward, FiLogOut, FiClipboard, FiDollarSign } from 'react-icons/fi';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 function PrivateData({ onLogout }) { 
@@ -19,7 +18,7 @@ function PrivateData({ onLogout }) {
   const navItems = [
     { id: 'dashboard', name: 'Dashboard', icon: <FiGrid size={22} /> },
     { id: 'projects', name: 'Projects', icon: <FiClipboard size={22} /> },
-    { id: 'activities', name: 'Aktivitas', icon: <FiCheckSquare size={22} /> },
+    { id: 'finance', name: 'Keuangan', icon: <FiDollarSign size={22} /> },
     { id: 'dokumen', name: 'Documents', icon: <FiFileText size={22} /> },
     { id: 'sertifikat', name: 'Certificates', icon: <FiAward size={22} /> },
   ];
@@ -55,7 +54,7 @@ function PrivateData({ onLogout }) {
       {/* Konten Utama */}
       <main className="flex-1 p-4 sm:p-6 md:p-8 overflow-y-auto pb-24 md:pb-8">
         
-        {/* ====== HEADER BARU ====== */}
+        {/* Header Baru */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pb-6 mb-6 border-b border-gray-800">
           <div>
             <h1 className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
@@ -64,19 +63,13 @@ function PrivateData({ onLogout }) {
 
             {activeTab === 'dashboard' && (
               <p className="text-gray-400 mt-1 flex items-center gap-2">
-                {new Date().toLocaleDateString('id-ID', {
-                  weekday: 'long',
-                  day: 'numeric',
-                  month: 'long',
-                  year: 'numeric'
-                })}{" "}
-                <span className="text-blue-400">🤘</span>
+                {new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} 🤘
               </p>
             )}
 
             {activeTab !== 'dashboard' && (
               <p className="text-gray-400 mt-1">
-                Kelola data {navItems.find(item => item.id === activeTab)?.name.toLowerCase()} kamu
+                Kelola data {navItems.find(item => item.id === activeTab)?.name.toLowerCase()} Anda
               </p>
             )}
           </div>
@@ -89,7 +82,7 @@ function PrivateData({ onLogout }) {
           </button>
         </div>
 
-        {/* ====== ANIMATED PAGE CONTENT ====== */}
+        {/* Konten Halaman Animasi */}
         <AnimatePresence mode="wait">
           <Motion.div
             key={activeTab}
@@ -100,14 +93,14 @@ function PrivateData({ onLogout }) {
           >
             {activeTab === 'dashboard' && <DashboardView refreshKey={refreshKey} />}
             {activeTab === 'projects' && <Projects refreshKey={refreshKey} onDataChange={handleDataChange} />}
-            {activeTab === 'activities' && <Activities refreshKey={refreshKey} onDataChange={handleDataChange} />}
+            {activeTab === 'finance' && <ExpenseTracker refreshKey={refreshKey} onDataChange={handleDataChange} />}
             {activeTab === 'dokumen' && <Dokumen refreshKey={refreshKey} onDataChange={handleDataChange} />}
             {activeTab === 'sertifikat' && <Sertifikat refreshKey={refreshKey} onDataChange={handleDataChange} />}
           </Motion.div>
         </AnimatePresence>
       </main>
 
-      {/* ====== NAVIGASI BAWAH ====== */}
+      {/* Navigasi Bawah */}
       <footer className="fixed bottom-4 inset-x-4 bg-gray-900/70 backdrop-blur-lg border border-white/10 p-2 flex justify-around items-center rounded-full shadow-lg md:hidden z-10">
         {navItems.map((item) => (
           <button 

@@ -1,15 +1,14 @@
-// src/components/Projects.jsx
 import { useState, useEffect, useRef } from 'react';
 import { supabase } from '../supabaseClient';
 import { FiPlus, FiEdit, FiTrash2 } from 'react-icons/fi';
-import { motion as Motion } from 'framer-motion';
+import { motion as Motion, AnimatePresence } from 'framer-motion';
 
 function Projects({ refreshKey, onDataChange }) {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const modal = useRef(null);
 
-  // State untuk form (bisa untuk 'tambah' atau 'edit')
+  // State untuk form
   const [editingProject, setEditingProject] = useState(null);
   const [projectName, setProjectName] = useState('');
   const [description, setDescription] = useState('');
@@ -36,13 +35,11 @@ function Projects({ refreshKey, onDataChange }) {
     fetchProjects();
   }, [refreshKey]);
 
-  // Fungsi saat tombol "Tambah Projects" diklik
   const handleAddClick = () => {
     clearForm();
     modal.current.showModal();
   };
 
-  // Fungsi saat tombol "Edit" di kartu diklik
   const handleEditClick = (project) => {
     setEditingProject(project);
     setProjectName(project.project_name);
@@ -52,7 +49,6 @@ function Projects({ refreshKey, onDataChange }) {
     modal.current.showModal();
   };
   
-  // Fungsi saat form disubmit (bisa untuk 'tambah' atau 'update')
   const handleSubmit = async (e) => {
     e.preventDefault();
     const projectData = {
@@ -65,11 +61,9 @@ function Projects({ refreshKey, onDataChange }) {
 
     let error;
     if (editingProject) {
-      // Mode Edit (Update)
       const { error: updateError } = await supabase.from('projects').update(projectData).eq('id', editingProject.id);
       error = updateError;
     } else {
-      // Mode Tambah (Insert)
       const { error: insertError } = await supabase.from('projects').insert([projectData]);
       error = insertError;
     }
@@ -83,7 +77,6 @@ function Projects({ refreshKey, onDataChange }) {
     }
   };
 
-  // Fungsi Hapus dengan kondisi
   const handleDelete = async (project) => {
     if (project.progress < 100) {
       alert("Projects hanya bisa dihapus jika progres sudah 100% (Selesai).");
@@ -95,13 +88,21 @@ function Projects({ refreshKey, onDataChange }) {
       else onDataChange();
     }
   };
-  
+
   if (loading) return <p className="text-gray-400">Memuat Projects...</p>;
 
   return (
     <>
-      <div className="flex justify-end mb-4">
-        <button className="btn btn-primary btn-sm" onClick={handleAddClick}><FiPlus /> Tambah Projects</button>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-semibold text-white">Daftar Projects Anda</h2>
+        <button 
+          className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold text-white 
+                     bg-white/5 backdrop-blur-sm border border-white/20 
+                     hover:bg-white/10 transition-colors"
+          onClick={handleAddClick}
+        >
+          <FiPlus /> Tambah Projects
+        </button>
       </div>
 
       {projects.length === 0 ? (
@@ -110,42 +111,54 @@ function Projects({ refreshKey, onDataChange }) {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map(project => (
-            <Motion.div 
-              key={project.id}
-              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg flex flex-col"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              whileHover={{ y: -5, transition: { type: 'spring', stiffness: 300 } }}
-            >
-              <div className="p-6 flex-grow">
-                <div className="flex justify-between items-start">
-                  <h2 className="card-title text-white mb-2">{project.project_name}</h2>
-                  <div className={`badge ${project.status === 'Completed' ? 'badge-success' : 'badge-info'} badge-outline text-xs`}>
-                    {project.status}
+          <AnimatePresence>
+            {projects.map((project, index) => (
+              <Motion.div 
+                key={project.id}
+                className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg flex flex-col overflow-hidden"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                exit={{ opacity: 0, y: 50}}
+              >
+                <div className="p-6 flex-grow">
+                  <div className="flex justify-between items-start">
+                    <h2 className="text-lg font-bold text-white mb-2">{project.project_name}</h2>
+                    <div className={`badge ${project.status === 'Completed' ? 'badge-success' : 'badge-info'} badge-outline text-xs`}>
+                      {project.status}
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-400 min-h-[40px] line-clamp-2">{project.description}</p>
+                  {project.note && (
+                    <div className="mt-4 p-3 bg-black/20 rounded-lg text-xs text-gray-300 italic">
+                      <span className="font-semibold not-italic">Note:</span> {project.note}
+                    </div>
+                  )}
+                </div>
+                
+                <div className="p-6 border-t border-white/10">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs text-gray-300">Progress</span>
+                    {/* DIKEMBALIKAN: Teks persentase sekarang ada di sini */}
+                    <span className="text-xs font-bold text-white">{project.progress}%</span>
+                  </div>
+                  <div className="w-full bg-black/20 rounded-full h-2 overflow-hidden">
+                    <Motion.div 
+                      className="bg-gradient-to-r from-cyan-500 to-blue-500 h-full rounded-full"
+                      initial={{ width: '0%' }}
+                      animate={{ width: `${project.progress}%` }}
+                      transition={{ duration: 1, ease: 'easeOut', delay: 0.5 }}
+                    />
+                  </div>
+                  {/* Tombol aksi sekarang selalu terlihat */}
+                  <div className="flex justify-end gap-2 mt-4">
+                      <button className="btn btn-circle btn-ghost btn-xs" onClick={() => handleEditClick(project)}><FiEdit size={14} /></button>
+                      <button className="btn btn-circle btn-ghost btn-xs text-red-500 hover:bg-red-500 hover:text-white" onClick={() => handleDelete(project)}><FiTrash2 size={14} /></button>
                   </div>
                 </div>
-                <p className="text-sm text-gray-400 min-h-[40px]">{project.description}</p>
-                {project.note && (
-                  <div className="mt-4 p-3 bg-black/20 rounded-lg text-xs text-gray-300 italic">
-                    <span className="font-semibold not-italic">Note:</span> {project.note}
-                  </div>
-                )}
-              </div>
-              <div className="p-6 border-t border-white/10">
-                <div className="flex justify-between text-xs text-gray-300 mb-1">
-                  <span>Progress</span>
-                  <span>{project.progress}%</span>
-                </div>
-                <progress className="progress progress-primary w-full" value={project.progress} max="100"></progress>
-                <div className="flex justify-end gap-2 mt-4">
-                  <button className="btn btn-ghost btn-xs" onClick={() => handleEditClick(project)}><FiEdit size={14} /></button>
-                  <button className="btn btn-ghost btn-xs text-red-500 hover:bg-red-500 hover:text-white" onClick={() => handleDelete(project)}><FiTrash2 size={14} /></button>
-                </div>
-              </div>
-            </Motion.div>
-          ))}
+              </Motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       )}
       
@@ -165,6 +178,7 @@ function Projects({ refreshKey, onDataChange }) {
               <button type="submit" className="btn btn-primary">{editingProject ? 'Simpan Perubahan' : 'Simpan Projects'}</button>
             </div>
           </form>
+          <form method="dialog"><button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button></form>
         </div>
       </dialog>
     </>

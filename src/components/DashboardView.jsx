@@ -4,14 +4,14 @@ import StatCard from './StatCard';
 import ProgressStatCard from './ProgressStatCard';
 import RecentActivity from './RecentActivity';
 import { motion as Motion } from 'framer-motion';
-import { FileText, Award, ClipboardCheck, Briefcase } from 'lucide-react';
+import { FileText, Award, Briefcase, DollarSign } from 'lucide-react';
 
 function DashboardView({ refreshKey }) {
   const [dokumenCount, setDokumenCount] = useState(0);
   const [sertifikatCount, setSertifikatCount] = useState(0);
   const [projectCount, setProjectCount] = useState(0);
   const [avgProjectProgress, setAvgProjectProgress] = useState(0);
-  const [activitiesDone, setActivitiesDone] = useState(0);
+  const [dailyExpense, setDailyExpense] = useState(0);
   const [loading, setLoading] = useState(true);
 
   const containerVariants = {
@@ -29,17 +29,29 @@ function DashboardView({ refreshKey }) {
   useEffect(() => {
     async function fetchAllData() {
       setLoading(true);
+      
+      // DIPERBAIKI: Logika tanggal yang lebih akurat dengan zona waktu lokal
+      const today = new Date();
+      const startOfDay = new Date(today.getFullYear(), today.getMonth(), today.getDate()).toISOString();
+
+      // DEBUG: Tampilkan tanggal yang digunakan untuk query di console
+      console.log("Mencari transaksi mulai dari tanggal (UTC):", startOfDay);
+
       const [
         { count: docCount },
         { count: certCount },
-        { count: activityCount },
+        { data: expenseData, error: expenseError },
         { data: projectsData, error: projError }
       ] = await Promise.all([
         supabase.from('dokumen').select('*', { count: 'exact', head: true }),
         supabase.from('sertifikat').select('*', { count: 'exact', head: true }),
-        supabase.from('daily_activities').select('*', { count: 'exact', head: true }).eq('is_completed', true),
+        supabase.from('transactions').select('amount').eq('type', 'expense').gte('created_at', startOfDay),
         supabase.from('projects').select('progress').eq('status', 'In Progress')
       ]);
+      
+      // DEBUG: Tampilkan data mentah yang diterima dari Supabase
+      console.log("Data pengeluaran yang diterima dari Supabase:", expenseData);
+      if(expenseError) console.error("Error dari Supabase:", expenseError);
 
       if (!projError && projectsData) {
         const projCount = projectsData.length;
@@ -52,13 +64,21 @@ function DashboardView({ refreshKey }) {
         }
       }
 
+      if (!expenseError && expenseData) {
+        const total = expenseData.reduce((sum, item) => sum + item.amount, 0);
+        // DEBUG: Tampilkan total yang dihitung
+        console.log("Total pengeluaran yang dihitung:", total);
+        setDailyExpense(total);
+      }
+
       setDokumenCount(docCount || 0);
       setSertifikatCount(certCount || 0);
-      setActivitiesDone(activityCount || 0);
       setLoading(false);
     }
     fetchAllData();
   }, [refreshKey]);
+  
+  const formatCurrency = (value) => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(value);
 
   if (loading) {
     return (
@@ -112,17 +132,18 @@ function DashboardView({ refreshKey }) {
       <Motion.div variants={itemVariants}>
         <div className="grid grid-cols-2 gap-4">
           <StatCard
-            title="Activity"
-            value={activitiesDone}
-            icon={<ClipboardCheck className="w-5 h-5 text-green-500" />}
+            title="Pengeluaran Hari Ini"
+            value={formatCurrency(dailyExpense)} // Kirim teks yang sudah diformat
+            isCurrency={true} // Beri tanda bahwa ini adalah mata uang
+            icon={<DollarSign className="w-5 h-5 text-green-500" />}
           />
           <StatCard
-            title="Projects"
+            title="Proyek Aktif"
             value={projectCount}
             icon={<Briefcase className="w-5 h-5 text-pink-400" />}
           />
           <StatCard
-            title="Dokumen"
+            title="Total Dokumen"
             value={dokumenCount}
             icon={<FileText className="w-5 h-5 text-blue-400" />}
           />
@@ -147,7 +168,6 @@ function DashboardView({ refreshKey }) {
         variants={itemVariants}
         className="grid grid-cols-1 lg:grid-cols-3 gap-6"
       >
-        {/* Kiri */}
         <div className="lg:col-span-2 flex flex-col gap-6">
           <ProgressStatCard 
             title="Rata-rata Progres Proyek" 
@@ -156,8 +176,6 @@ function DashboardView({ refreshKey }) {
           />
           <RecentActivity refreshKey={refreshKey} />
         </div>
-
-        {/* Kanan */}
         <div className="flex flex-col gap-6">
           <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl p-4 shadow-xl">
             <h4 className="text-white font-semibold text-sm mb-2">Catatan Cepat</h4>
@@ -174,3 +192,4 @@ function DashboardView({ refreshKey }) {
 }
 
 export default DashboardView;
+

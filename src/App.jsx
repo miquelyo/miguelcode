@@ -32,7 +32,7 @@ function App() {
 
   // --- Logika Tema ---
   // DIUBAH: setTheme diganti _setTheme untuk menandakan tidak terpakai
-  const [theme, _setTheme] = useState('light');
+  const [theme, _setTheme] = useState('dark');
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -40,13 +40,12 @@ function App() {
     } else {
       document.documentElement.classList.remove('dark');
     }
-    const themeColor = theme === 'dark' ? '#111827' : '#f9fafb'; // Warna disesuaikan
+    const themeColor = theme === 'dark' ? '#111827' : '#ffffff';
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
     if (metaThemeColor) {
       metaThemeColor.setAttribute('content', themeColor);
     }
   }, [theme]);
-
 
   return (
     <Routes>
