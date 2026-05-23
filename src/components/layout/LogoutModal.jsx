@@ -21,8 +21,9 @@ export default function LogoutModal({ isOpen, onClose, onConfirm }) {
           <motion.div
             className="relative rounded-3xl p-6 w-full max-w-sm mx-4 shadow-2xl z-10"
             style={{
-              background: 'rgba(25, 25, 35, 0.95)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
+              background: 'var(--color-surface-2)',
+              border: '1px solid var(--color-border)',
+              backdropFilter: 'blur(20px)',
             }}
             initial={{ scale: 0.95, opacity: 0, y: 15 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -32,7 +33,7 @@ export default function LogoutModal({ isOpen, onClose, onConfirm }) {
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center bg-white/5 border border-white/5 hover:bg-white/10 text-white/50 hover:text-white transition-colors duration-200"
+              className="absolute top-4 right-4 w-8 h-8 rounded-full flex items-center justify-center bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-gray-500 hover:text-gray-800 dark:text-white/50 dark:hover:text-white transition-colors duration-200"
             >
               <X size={16} />
             </button>
@@ -42,7 +43,7 @@ export default function LogoutModal({ isOpen, onClose, onConfirm }) {
               <LogOut size={22} />
             </div>
 
-            <h2 className="text-xl font-bold text-white mb-2">
+            <h2 className="text-xl font-bold mb-2" style={{ color: 'var(--color-text)' }}>
               Konfirmasi Keluar
             </h2>
             <p className="text-xs leading-relaxed mb-6" style={{ color: 'var(--color-text-muted)' }}>
@@ -53,7 +54,8 @@ export default function LogoutModal({ isOpen, onClose, onConfirm }) {
             <div className="flex gap-3">
               <button
                 onClick={onClose}
-                className="flex-1 py-2.5 rounded-xl text-xs font-semibold text-white bg-white/5 border border-white/5 hover:bg-white/10 transition-all duration-200"
+                className="flex-1 py-2.5 rounded-xl text-xs font-semibold bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 hover:bg-black/10 dark:hover:bg-white/10 transition-all duration-200"
+                style={{ color: 'var(--color-text)' }}
               >
                 Batal
               </button>

@@ -7,8 +7,8 @@ function StatCard({ title, value, icon: Icon, color }) {
       whileHover={{ y: -3, boxShadow: `0 8px 24px ${color}15` }}
       className="p-5 rounded-2xl transition-all duration-300"
       style={{
-        background: 'rgba(255,255,255,0.04)',
-        border: '1px solid rgba(255,255,255,0.07)',
+        background: 'var(--color-surface)',
+        border: '1px solid var(--color-border)',
       }}
     >
       <div
@@ -21,7 +21,7 @@ function StatCard({ title, value, icon: Icon, color }) {
         <Icon size={18} />
       </div>
       <p className="text-xs font-semibold" style={{ color: 'var(--color-text-muted)' }}>{title}</p>
-      <h3 className="text-2xl font-bold text-white tracking-tight mt-1">{value}</h3>
+      <h3 className="text-2xl font-bold tracking-tight mt-1" style={{ color: 'var(--color-text)' }}>{value}</h3>
     </motion.div>
   )
 }
@@ -36,13 +36,13 @@ export default function VaultHero() {
         transition={{ duration: 0.5 }}
         className="relative overflow-hidden rounded-3xl p-6 lg:p-8"
         style={{
-          background: 'linear-gradient(135deg, hsl(230,25%,12%) 0%, hsl(248,50%,15%) 100%)',
-          border: '1px solid rgba(255,255,255,0.08)',
-          boxShadow: '0 10px 40px rgba(0,0,0,0.3)',
+          background: 'var(--gradient-hero-bg)',
+          border: '1px solid var(--color-hero-box-border)',
+          boxShadow: 'var(--shadow-md)',
         }}
       >
         {/* Decorative backdrop glow */}
-        <div className="absolute -top-12 -right-12 w-64 h-64 rounded-full opacity-10 blur-3xl"
+        <div className="absolute -top-12 -right-12 w-64 h-64 rounded-full opacity-15 blur-3xl"
           style={{ background: 'var(--gradient-primary)' }} />
 
         <div className="relative z-10">
@@ -52,13 +52,13 @@ export default function VaultHero() {
               Accounts Synced & Secure
             </p>
           </div>
-          <p className="text-xs font-medium uppercase tracking-widest" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-xs font-medium uppercase tracking-widest" style={{ color: 'var(--color-hero-sub)' }}>
             Financial Vault Net Worth
           </p>
-          <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none mt-1">
+          <h1 className="text-5xl lg:text-6xl font-extrabold tracking-tight leading-none mt-1" style={{ color: 'var(--color-hero-text)' }}>
             $24,920
           </h1>
-          <p className="mt-4 text-xs max-w-md" style={{ color: 'var(--color-text-muted)' }}>
+          <p className="mt-4 text-xs max-w-md" style={{ color: 'var(--color-hero-sub)' }}>
             Consolidated net worth including savings goals, primary checking accounts, crypto portfolios, and investments. Updated seconds ago.
           </p>
         </div>

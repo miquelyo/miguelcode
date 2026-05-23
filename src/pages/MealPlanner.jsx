@@ -15,7 +15,7 @@ export default function MealPlanner() {
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
               Nutrition & Health
             </p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white mt-1">
+            <h1 className="text-4xl font-extrabold tracking-tight mt-1" style={{ color: 'var(--color-text)' }}>
               Meal Planner<span style={{ color: 'var(--color-primary)' }}>.</span>
             </h1>
           </div>
@@ -23,10 +23,11 @@ export default function MealPlanner() {
           <motion.button
             whileHover={{ scale: 1.03, translateY: -2 }}
             whileTap={{ scale: 0.97 }}
-            className="px-4 py-2.5 rounded-xl text-xs font-semibold text-white flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-1.5"
             style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--color-border)',
+              color: 'var(--color-text)',
             }}
           >
             <Plus size={14} />
@@ -42,7 +43,7 @@ export default function MealPlanner() {
           {/* LEFT: Meal List */}
           <div className="space-y-4">
             <div className="flex items-center justify-between mb-2">
-              <h2 className="text-lg font-semibold text-white">Daily Meals</h2>
+              <h2 className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>Daily Meals</h2>
               <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>3 meals planned</span>
             </div>
 
@@ -79,13 +80,13 @@ export default function MealPlanner() {
             <div
               className="p-5 rounded-3xl space-y-3"
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
+                background: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
               }}
             >
               <div className="flex items-center gap-2">
                 <Utensils size={18} className="text-emerald-400" />
-                <h3 className="text-sm font-semibold text-white">Dietitian Intelligence</h3>
+                <h3 className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Dietitian Intelligence</h3>
               </div>
               <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
                 Consuming high protein today ensures muscle synthesis keeps up during focus study sessions. Avoid processed sugar post 6 PM to maintain restful REM cycles.

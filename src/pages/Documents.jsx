@@ -15,7 +15,7 @@ export default function Documents() {
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
               Personal Cloud
             </p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white mt-1">
+            <h1 className="text-4xl font-extrabold tracking-tight mt-1" style={{ color: 'var(--color-text)' }}>
               Documents<span style={{ color: 'var(--color-primary)' }}>.</span>
             </h1>
           </div>
@@ -23,10 +23,11 @@ export default function Documents() {
           <motion.button
             whileHover={{ scale: 1.03, translateY: -2 }}
             whileTap={{ scale: 0.97 }}
-            className="px-4 py-2.5 rounded-xl text-xs font-semibold text-white flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-1.5"
             style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--color-border)',
+              color: 'var(--color-text)',
             }}
           >
             <Plus size={14} />
@@ -40,7 +41,7 @@ export default function Documents() {
         {/* FOLDERS GRID */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-white">Folders</h2>
+            <h2 className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>Folders</h2>
             <button className="flex items-center gap-1 text-xs font-medium" style={{ color: 'var(--color-primary)' }}>
               View All <ArrowRight size={12} />
             </button>
@@ -60,7 +61,7 @@ export default function Documents() {
           {/* LEFT: Recent Files */}
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-white">Recent Files</h2>
+              <h2 className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>Recent Files</h2>
               <button
                 className="px-3 py-1.5 rounded-lg text-xs font-semibold"
                 style={{
@@ -85,18 +86,18 @@ export default function Documents() {
           <div
             className="p-5 rounded-3xl self-start space-y-4"
             style={{
-              background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              background: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
             }}
           >
             <div className="flex items-center gap-2">
               <ShieldAlert size={18} className="text-rose-400" />
-              <h3 className="text-sm font-semibold text-white">Security Intelligence</h3>
+              <h3 className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>Security Intelligence</h3>
             </div>
             <p className="text-xs leading-relaxed" style={{ color: 'var(--color-text-muted)' }}>
               Your workspace folders are encrypted with AES-256 standard protocols. The last active session was initiated from Jakarta, Indonesia. Keep your recovery phrase secured.
             </p>
-            <div className="p-3 rounded-2xl bg-white/5 border border-white/5 space-y-2">
+            <div className="p-3 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 space-y-2">
               <div className="flex items-center justify-between text-[11px]">
                 <span style={{ color: 'var(--color-text-muted)' }}>Vault Status</span>
                 <span className="text-emerald-400 font-semibold">Protected</span>

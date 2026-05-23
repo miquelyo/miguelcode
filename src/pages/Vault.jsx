@@ -16,7 +16,7 @@ export default function Vault() {
             <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--color-text-muted)' }}>
               Personal Finance
             </p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white mt-1">
+            <h1 className="text-4xl font-extrabold tracking-tight mt-1" style={{ color: 'var(--color-text)' }}>
               Vault<span style={{ color: 'var(--color-primary)' }}>.</span>
             </h1>
           </div>
@@ -24,10 +24,11 @@ export default function Vault() {
           <motion.button
             whileHover={{ scale: 1.03, translateY: -2 }}
             whileTap={{ scale: 0.97 }}
-            className="px-4 py-2.5 rounded-xl text-xs font-semibold text-white flex items-center gap-1.5"
+            className="px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center gap-1.5"
             style={{
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--color-border)',
+              color: 'var(--color-text)',
             }}
           >
             <Plus size={14} />
@@ -41,7 +42,7 @@ export default function Vault() {
         {/* BANK CARDS */}
         <div>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-white">Bank Accounts</h2>
+            <h2 className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>Bank Accounts</h2>
             <button className="flex items-center gap-1 text-xs font-medium" style={{ color: 'var(--color-primary)' }}>
               View All <ArrowRight size={12} />
             </button>
