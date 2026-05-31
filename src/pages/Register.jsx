@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import { motion } from "framer-motion";
 import { Mail, Lock, Sparkles, ArrowRight, Eye, EyeOff, User } from "lucide-react";
 
 export default function Register() {
   const navigate = useNavigate();
+  const { register } = useAuth();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,22 +25,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-
-      const user = userCredential.user;
-
-      await setDoc(doc(db, "users", user.uid), {
-        uid: user.uid,
-        fullName,
-        email: user.email,
-        avatar: "",
-        createdAt: new Date(),
-      });
-
+      await register(email);
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

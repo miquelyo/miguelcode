@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import { motion } from "framer-motion";
 import { Mail, Lock, Sparkles, ArrowRight, Eye, EyeOff } from "lucide-react";
 
@@ -12,6 +11,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     if (e) e.preventDefault();
@@ -24,7 +24,7 @@ export default function Login() {
     setLoading(true);
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await login(email);
       // sukses login → AuthProvider otomatis detect via onAuthStateChanged
       navigate("/dashboard");
     } catch (error) {
