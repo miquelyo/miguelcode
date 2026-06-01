@@ -5,4 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig(({ command }) => ({
   base: command === 'build' ? '/miguelcode/' : '/',
   plugins: [react(), tailwindcss()],
+  build: {
+    outDir: 'docs',
+  },
 }))
