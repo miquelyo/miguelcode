@@ -96,6 +96,12 @@ export default function App() {
         }
       />
 
+      {/* CATCH-ALL: redirect unknown routes to portfolio */}
+      <Route
+        path="*"
+        element={<Navigate to="/portfolio" replace />}
+      />
+
     </Routes>
   )
 }
